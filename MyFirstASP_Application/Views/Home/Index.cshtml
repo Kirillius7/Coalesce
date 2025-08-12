@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<style>
+    body {
+        /* background-image: url('/images/photo1.jpg'); */
+        background: #010101;
+        background: linear-gradient(0deg, #010101, #5C05F1);
+        background-size: cover;          /* Щоб фото заповнило весь фон */ */
+        /* background-repeat: no-repeat;    /* Щоб не повторювалося */ */
+        /* background-position: center;     /* Центрувати зображення */ */
+        height: 100vh;                   /* Щоб тіло було 100% по висоті вікна 
+        margin: 0;                      /* Вилучити відступи */
+    }
+    * { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
+
+/* Wrapper центрує контейнер карток по вертикалі і має внутрішні відступи */
+.cards-wrapper {
+  min-height: 90vh;               /* займає всю висоту вікна */
+  display: flex;
+  justify-content: center;         /* центрування по горизонталі */
+  align-items: center;             /* центрування по вертикалі */
+  padding: 2rem;                   /* відступ від країв вікна */
+  /* background: #f5f7fb;             /* фон сторінки (необов'язково) */ */
+}
+
+/* Контейнер карток — тут Flexbox керує рядком карток */
+.cards-container {
+  display: flex;
+  gap: 6rem;                       /* простір між картками — змінюй тут */
+  justify-content: center;
+  align-items: flex-start;         /* вирівнювання карток зверху (щоб кнопки були на різній висоті, якщо тексти різні) */
+  flex-wrap: wrap;                 /* дозволяє переносити картки на новий ряд на вузьких екранах */
+}
+
+/* Одна картка */
+.card {
+  width: 260px;                    /* ширина картки (зроби більше/менше) */
+  height: 420px;                   /* висота — більше ніж ширина, як ти хотів */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  overflow: hidden;                /* щоб картинка не виходила за межі */
+  display: flex;
+  flex-direction: column;          /* вміст іде зверху вниз */
+}
+
+/* Верхня частина — фото */
+.card-image {
+  height: 50%;                     /* фото займає половину висоти картки */
+  width: 100%;
+  overflow: hidden;
+}
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;               /* важливо: фото заповнить область без спотворення */
+  display: block;
+}
+
+/* Контент під фото: заголовок, текст, кнопка */
+.card-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  flex: 1;                         /* щоб контент займав залишок висоти */
+}
+.card-content h3 { margin: 0; font-size: 1.05rem; }
+.card-content p { margin: 0; color: #555; font-size: 0.95rem; flex: 1; }
+
+/* Кнопка */
+.card-content button {
+  align-self: center;          /* кнопка по лівому краю вмісту */
+  padding: 0.45rem 0.9rem;
+  /* border: none; */
+  border-radius: 8px;
+  /* background: #007bff;  */
+  /* color: #fff; */
+  /* cursor: pointer; */
+}
+.card-content h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  text-align: center; /* центрує текст заголовка */
+}
+.card-content button:hover { opacity: 0.92; }
+}
+
+}
+</style>
+
+<body>
+@*     <div class="text-center">
+        <h1 class="display-4">Here's the new project run by me</h1>
+        <a asp-controller = "Home" asp-action="Expenses" class = "btn btn-outline-primary">Overview</a>
+        <a asp-controller = "Home" asp-action="CreateEditExpense" class = "btn btn-secondary">Create new</a>
+        <a asp-controller = "Home" asp-action="Test" class = "btn btn-secondary">Test</a>
+        <a asp-controller = "Home" asp-action="PeopleFill" class = "btn btn-secondary">PeopleFill</a>
+
+
+    </div> *@
+
+
+    <div class="cards-wrapper">
+    <div class="cards-container">
+      <div class="card">
+        <div class="card-image"><img src="/images/photo3.jpg" alt="Фото 1"></div>
+        <div class="card-content">
+          <h3>Expenses</h3>
+          <p>This card is for tracking your daily spending. Use it to log every purchase, from your morning coffee to your grocery run. It keeps a track on what you spend your money and reveals patterns in your spending habits.</p>
+          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="/images/photo4.jpg" alt="Фото 2"></div>
+        <div class="card-content">
+          <h3>List to do</h3>
+          <p>This is your daily action plan. Write down everything you need to accomplish during a specific day. Checking things off as you go gives you a sense of accomplishment and helps you stay organized and on track.</p>
+          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-image"><img src="/images/photo5.jpg" alt="Фото 3"></div>
+        <div class="card-content">
+          <h3>Dates</h3>
+          <p>This card is to record birthdays, anniversaries, national holidays, or any other significant dates you need to remember. This ensures you don't miss out on celebrating special moments or observing important days.</p>
+          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
