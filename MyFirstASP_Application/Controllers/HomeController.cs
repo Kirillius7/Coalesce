@@ -10,10 +10,14 @@ namespace MyFirstASP_Application.Controllers
 
         private readonly ExpensesDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger, ExpensesDbContext context)
+        private readonly ResponsibilitiesDbContext _rspcontext;
+
+
+        public HomeController(ILogger<HomeController> logger, ExpensesDbContext context, ResponsibilitiesDbContext rspcontext) 
         {
             _logger = logger;
             _context = context;
+            _rspcontext = rspcontext;
         }
         [HttpGet]
         public IActionResult Test(int firstNumber, int secondNumber)
@@ -84,6 +88,39 @@ namespace MyFirstASP_Application.Controllers
             {
                 return RedirectToAction("Index");
             }
+            return View();
+        }
+
+        public IActionResult Responsibilities()
+        {
+            var respons = _rspcontext.responsibilities.ToList();
+            var totalResponsibilities = _rspcontext.responsibilities.Count();
+            ViewBag.responsibilities = totalResponsibilities;
+            return View(respons);
+        }
+
+        public IActionResult CreateEditResponsibilityForm(Responsibility model)
+        {
+            if (model.id == 0)
+            {
+                _rspcontext.responsibilities.Add(model);
+            }
+            else
+            {
+                _rspcontext.responsibilities.Update(model);
+            }
+            _rspcontext.SaveChanges();
+            return RedirectToAction("Responsibilities");
+        }
+
+        public IActionResult CreateEditResponsibility(int? id)
+        {
+            if (id is not null)
+            {
+                var responsibility = _rspcontext.responsibilities.SingleOrDefault(x => x.id == id);
+                return View();
+            }
+
             return View();
         }
     }

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Create / Edit";
+}
+
+@model MyFirstASP_Application.Models.Responsibility
+
+<div class="text-center">
+    <h1 class="display-4">Create or edit an expense</h1>
+</div>
+<div class="d-flex justify-content-center">
+    <form asp-action="CreateEditResponsibilityForm" style="max-width: 600px; width: 100%;"> 
+        <input hidden class = "form-control" type = "number" placeholder = "0" asp-for="id" />
+        <label class = "mt-4">Task</label>
+        <input class = "form-control" type = "text" placeholder = "Add a description" asp-for="task" step = "0.01" />
+
+@*         <label class = "mt-4">Accomplishment</label>
+        <input class = "form-control" type = "checkbox" placeholder = "Add a description" asp-for="accoplishment"/> *@
+        <div class="form-check mt-4">
+            <input class="form-check-input" type="checkbox" asp-for="accoplishment" />
+            <label class="form-check-label" asp-for="accoplishment">
+                Accomplishment
+            </label>
+        </div>
+        <label class = "mt-4">Date</label>
+        <input type="date" asp-for="date" class="form-control" />
+        <a class="btn btn-primary mt-4" asp-controller="Home" asp-action="Responsibilities">Back</a>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-success" type="submit">Ok</button>
+            <button class="btn btn-danger" type="reset">Clear</button>
+        </div>
+        @* <button class = "btn btn-primary mt-4" type = "submit">Ok</button> *@
+
+    </form>
+</div>
