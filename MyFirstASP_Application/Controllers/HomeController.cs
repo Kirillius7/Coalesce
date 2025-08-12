@@ -60,7 +60,7 @@ namespace MyFirstASP_Application.Controllers
                 _context.expenses.Update(model);
             }
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Expenses");
         }
         public IActionResult Privacy()
         {

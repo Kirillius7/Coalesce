@@ -2,15 +2,34 @@
     ViewData["Title"] = "Expenses";
 }
 @model List<Expense>
+
+@{
+    var group = Model.OrderBy(
+                m => m.Date)
+                .GroupBy(
+                    x => new { x.Date.Year, x.Date.Month }
+                ).ToList();
+
+    var monthNames = new Dictionary<int, string> {
+            { 1, "January" }, { 2, "February" }, { 3, "March" },
+            { 4, "April" }, { 5, "May" }, { 6, "June" },
+            { 7, "July" }, { 8, "August" }, { 9, "September" },
+            { 10, "October" }, { 11, "November" }, { 12, "December" }
+        };
+
+
+}
 <div class="text-center">
     <h1 class="display-4">Expenses</h1>
     <br />
+    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
+    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditExpense">Create new</a>
     <hr />
     <h3>Total expenses $@ViewBag.expenses</h3>
     <br />
     <br1/>
-    <table class = "table">
-        <thead>
+@*     <table class = "table">
+        <thead> 
             <tr>
                 <th>
                     id
@@ -20,6 +39,9 @@
                 </th>
                 <th>
                     Description
+                </th>                
+                <th>
+                    Time
                 </th>
                 <th>
                     Actions
@@ -41,6 +63,9 @@
                             @expense.Description
                         </td>
                         <td>
+                            @expense.Date.Month/@expense.Date.Day/@expense.Date.Year 
+                        </td>
+                        <td>
                             <a asp-action="CreateEditExpense" asp-route-id = "@expense.id">Edit</a>
                             <a asp-action="DeleteExpense" asp-route-id = "@expense.id">Delete</a>
                         </td>
@@ -48,5 +73,36 @@
                 }
             }
         </tbody>
-    </table>
+    </table> *@
+
+    @foreach (var grp in group)
+    {
+          <h3>@monthNames[grp.Key.Month] @grp.Key.Year</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var expense in grp)
+                {
+                            <tr>
+                                <td>@expense.id</td>
+                                <td>@expense.Value</td>
+                                <td>@expense.Description</td>
+                                <td>@expense.Date.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a asp-action="CreateEditExpense" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
+                                    <a asp-action="DeleteExpense" class="btn btn-outline-danger" asp-route-id="@expense.id">Delete</a>
+                                </td>
+                            </tr>
+                }
+                </tbody>
+            </table>
+    }
 </div>

@@ -110,7 +110,7 @@ html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
         <div class="card-content">
           <h3>Expenses</h3>
           <p>This card is for tracking your daily spending. Use it to log every purchase, from your morning coffee to your grocery run. It keeps a track on what you spend your money and reveals patterns in your spending habits.</p>
-          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+          <a class="btn btn-outline-primary" asp-controller="Home" asp-action="Expenses">Детальніше</a>
         </div>
       </div>
 
@@ -119,7 +119,7 @@ html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
         <div class="card-content">
           <h3>List to do</h3>
           <p>This is your daily action plan. Write down everything you need to accomplish during a specific day. Checking things off as you go gives you a sense of accomplishment and helps you stay organized and on track.</p>
-          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+          <a class="btn btn-outline-primary" asp-controller="Home" asp-action="CreateEditExpense">Детальніше</a>
         </div>
       </div>
 
@@ -128,7 +128,7 @@ html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
         <div class="card-content">
           <h3>Dates</h3>
           <p>This card is to record birthdays, anniversaries, national holidays, or any other significant dates you need to remember. This ensures you don't miss out on celebrating special moments or observing important days.</p>
-          <button type="button" class="btn btn-outline-primary">Детальніше</button>
+          <a class="btn btn-outline-primary" asp-controller="Home" asp-action="CreateEditExpense">Детальніше</a>
         </div>
       </div>
     </div>

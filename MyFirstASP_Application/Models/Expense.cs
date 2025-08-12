@@ -9,5 +9,6 @@ namespace MyFirstASP_Application.Models
 
         [Required]
         public string? Description { get; set; }
+        public DateTime Date { get; set; }
     }
 }

@@ -22,6 +22,30 @@
 }
 
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Вся висота вікна */
+}
+
+.main-content {
+  flex: 1; /* Розтягує основний контент, щоб зайняти доступний простір */
+}
+
+/* Футер можна зробити звичайним блоком */
+footer {
+  background: #333;
+  color: white;
+  padding: 20px;
+}
+
+
 </style>
 <body>
     <header>
@@ -53,7 +77,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container main-content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
