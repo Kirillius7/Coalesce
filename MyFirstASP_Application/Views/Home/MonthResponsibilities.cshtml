@@ -1,8 +1,7 @@
 ﻿@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
-@{
-}
+
 @model List<Responsibility>
 
 @{
@@ -18,8 +17,6 @@
             { 7, "July" }, { 8, "August" }, { 9, "September" },
             { 10, "October" }, { 11, "November" }, { 12, "December" }
         };
-
-
 }
 <div class="text-center">
     <h1 class="display-4">List to do</h1>
@@ -27,38 +24,38 @@
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Responsibilities">Back</a>
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditResponsibility">Create new</a>
     <hr />
-    <h3>Total tasks: @ViewBag.responsibilities</h3>
+    <h3>Total unfinished tasks: @ViewBag.tasksMonth</h3>
     <br />
     <br1/>
 
     @foreach (var grp in group)
     {
-               <h3>@monthNames[grp.Key.Month] </h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Task</th>
-                                <th>Date</th>
-                                <th>Accomplishment</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        <h3>@monthNames[grp.Key.Month] </h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Task</th>
+                    <th>Date</th>
+                    <th>Accomplishment</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach (var expense in grp)
                 {
-                                            <tr>
-                                                <td>@expense.id</td>
-                                                <td>@expense.task</td>
-                                                <td>@expense.date.ToString("dd/MM/yyyy")</td>
-                                                <td>@expense.accoplishment</td>
-                                                <td>
-                                                    <a asp-action="CreateEditResponsibility" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
-                                                                                            <a asp-action="DeleteResponsibility" class="btn btn-outline-danger" asp-route-id="@expense.id" asp-route-day="@expense.date.Day" asp-route-month="@expense.date.Month">Delete</a>
-                                                </td>
-                                            </tr>
+                    <tr>
+                        <td>@expense.id</td>
+                        <td>@expense.task</td>
+                        <td>@expense.date.ToString("dd/MM/yyyy")</td>
+                        <td>@expense.accoplishment</td>
+                        <td>
+                            <a asp-action="CreateEditResponsibility" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
+                            <a asp-action="DeleteResponsibility" class="btn btn-outline-danger" asp-route-id="@expense.id" asp-route-day="@expense.date.Day" asp-route-month="@expense.date.Month">Delete</a>
+                        </td>
+                   </tr>
                 }
-                        </tbody>
-                    </table>
+            </tbody>
+        </table>
     }
 </div>

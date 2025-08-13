@@ -101,8 +101,9 @@ namespace MyFirstASP_Application.Controllers
         public IActionResult MonthResponsibilities(int day, int month)
         {
             var dayRespons = _rspcontext.responsibilities.Where(x => x.date.Day == day && x.date.Month == month).ToList();
-            var unfinished = _rspcontext.responsibilities.Where(x => x.accoplishment == false).Count();
-            ViewBag.responsibilities = unfinished;
+            var unfinished = _rspcontext.responsibilities
+                .Where(x => x.accoplishment == false && x.date.Day == day && x.date.Month == month).Count();
+            ViewBag.tasksMonth = unfinished;
             return View(dayRespons);
         }
 
@@ -124,8 +125,7 @@ namespace MyFirstASP_Application.Controllers
             var responsibility = _rspcontext.responsibilities.SingleOrDefault(x => x.id == id);
             _rspcontext.responsibilities.Remove(responsibility);
             _rspcontext.SaveChanges();
-            //var nw = _rspcontext.responsibilities.Where(x => x.date.Day == model.date.Day && x.date.Year == model.date.Year);
-            return RedirectToAction("MonthResponsibilities", new { day, month}); ////////////////////////////////////
+            return RedirectToAction("MonthResponsibilities", new { day, month});
         }
 
         public IActionResult CreateEditResponsibility(int? id)
@@ -139,9 +139,9 @@ namespace MyFirstASP_Application.Controllers
             return View();
         }
 
-        public IActionResult DeleteMonthResponsibilities(int? month)
+        public IActionResult DeleteDayResponsibilities(int? day, int? month)
         {
-            var resps = _rspcontext.responsibilities.Where(x => x.date.Month == month).ToList();
+            var resps = _rspcontext.responsibilities.Where(x => x.date.Day == day && x.date.Month == month).ToList();
             _rspcontext.responsibilities.RemoveRange(resps);
             _rspcontext.SaveChanges();
             return RedirectToAction("Responsibilities");
