@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MyFirstASP_Application.Models;
+using MyFirstASP_Application.Services.DateService;
+using MyFirstASP_Application.Services.ExpenseService;
 
 namespace MyFirstASP_Application
 {
@@ -20,6 +22,9 @@ namespace MyFirstASP_Application
             builder.Services.AddDbContext<DatesDbContext>(options =>
                 options.UseInMemoryDatabase("DatesDb")
             );
+            builder.Services.AddScoped<IDateService, DateSrvc>();
+            builder.Services.AddScoped<IExpenseService, ExpenseSrvc>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
