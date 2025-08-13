@@ -24,10 +24,10 @@
 <div class="text-center">
     <h1 class="display-4">List to do</h1>
     <br />
-    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
+    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Responsibilities">Back</a>
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditResponsibility">Create new</a>
     <hr />
-    <h3>Total tasks @ViewBag.responsibilities</h3>
+    <h3>Total tasks: @ViewBag.responsibilities</h3>
     <br />
     <br1/>
 
@@ -53,8 +53,8 @@
                                                 <td>@expense.date.ToString("dd/MM/yyyy")</td>
                                                 <td>@expense.accoplishment</td>
                                                 <td>
-                                                    <a asp-action="CreateEditExpense" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
-                                                    <a asp-action="DeleteExpense" class="btn btn-outline-danger" asp-route-id="@expense.id">Delete</a>
+                                                    <a asp-action="CreateEditResponsibility" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
+                                                                                            <a asp-action="DeleteResponsibility" class="btn btn-outline-danger" asp-route-id="@expense.id" asp-route-day="@expense.date.Day" asp-route-month="@expense.date.Month">Delete</a>
                                                 </td>
                                             </tr>
                 }

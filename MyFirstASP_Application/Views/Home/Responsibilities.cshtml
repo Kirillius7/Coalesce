@@ -6,11 +6,9 @@
 @model List<Responsibility>
 
 @{
-    var group = Model.OrderBy(
-                m => m.date)
-                .GroupBy(
-                    x => new { x.date.Year, x.date.Month, x.date.Day }
-                ).ToList();
+    var group = Model
+                        .GroupBy(x => x.date.Month)
+                        .OrderBy(x => x.Key);
 
     var monthNames = new Dictionary<int, string> {
             { 1, "January" }, { 2, "February" }, { 3, "March" },
@@ -27,15 +25,18 @@
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditResponsibility">Create new</a>
     <hr />
-    <h3>Total tasks @ViewBag.responsibilities</h3>
+    <h3>Total tasks: @ViewBag.responsibilities</h3>
     <br />
     <br1/>
 
-    @foreach (var grp in group)
+    @foreach (var g in group)
     {
-           <h3>@monthNames[grp.Key.Month] </h3>
-                <table class="table">
-                    <thead>
+
+            <h3>@monthNames[g.Key]
+            </h3>
+
+        <table class="table">
+            <thead>
                         <tr>
                             <th>Day</th>
                             <th>Number of tasks</th>
@@ -44,18 +45,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                @foreach (var expense in Model.DistinctBy(x => x.date))
-                {
+                @{var groupDay = g.GroupBy(x => x.date.Day).OrderBy(x => x.Key);}
+                @foreach(var grDay in groupDay)
+                {  
                                     <tr>
-                                        <td>@expense.date.Day</td>
-                                        <td>@expense.task.Count()</td>
-                                        <td>@grp.Where(x => x.accoplishment == true).Count()</td>
+                                        <td>@grDay.Key</td>
+
+                                        <td>@grDay.Count()</td>
+                                        <td>@grDay.Where(x => x.accoplishment == true).Count()</td>
                                         <td>
-                                            <a asp-action="MonthResponsibilities" class="btn btn-outline-success" asp-route-id="@expense.id">Go to</a>
-                                            <a asp-action="DeleteExpense" class="btn btn-outline-danger" asp-route-id="@expense.id">Delete</a>
+                                            @{var example = Model.FirstOrDefault(x => x.date.Day == grDay.Key && x.date.Month == g.Key);}
+                                            <a asp-action="MonthResponsibilities" class="btn btn-outline-success" asp-route-day="@example.date.Day" asp-route-month="@example.date.Month">Go to</a>
+                                                    <a asp-action="DeleteMonthResponsibilities" class="btn btn-outline-danger" asp-route-month="@g.Key">Delete</a>
                                         </td>
                                     </tr>
-                }
+                 }  
                     </tbody>
                 </table>
     }

@@ -98,6 +98,13 @@ namespace MyFirstASP_Application.Controllers
             ViewBag.responsibilities = totalResponsibilities;
             return View(respons);
         }
+        public IActionResult MonthResponsibilities(int day, int month)
+        {
+            var dayRespons = _rspcontext.responsibilities.Where(x => x.date.Day == day && x.date.Month == month).ToList();
+            var unfinished = _rspcontext.responsibilities.Where(x => x.accoplishment == false).Count();
+            ViewBag.responsibilities = unfinished;
+            return View(dayRespons);
+        }
 
         public IActionResult CreateEditResponsibilityForm(Responsibility model)
         {
@@ -112,6 +119,14 @@ namespace MyFirstASP_Application.Controllers
             _rspcontext.SaveChanges();
             return RedirectToAction("Responsibilities");
         }
+        public IActionResult DeleteResponsibility(int id, int day, int month)
+        {
+            var responsibility = _rspcontext.responsibilities.SingleOrDefault(x => x.id == id);
+            _rspcontext.responsibilities.Remove(responsibility);
+            _rspcontext.SaveChanges();
+            //var nw = _rspcontext.responsibilities.Where(x => x.date.Day == model.date.Day && x.date.Year == model.date.Year);
+            return RedirectToAction("MonthResponsibilities", new { day, month}); ////////////////////////////////////
+        }
 
         public IActionResult CreateEditResponsibility(int? id)
         {
@@ -122,6 +137,14 @@ namespace MyFirstASP_Application.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult DeleteMonthResponsibilities(int? month)
+        {
+            var resps = _rspcontext.responsibilities.Where(x => x.date.Month == month).ToList();
+            _rspcontext.responsibilities.RemoveRange(resps);
+            _rspcontext.SaveChanges();
+            return RedirectToAction("Responsibilities");
         }
     }
 }
