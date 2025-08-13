@@ -14,6 +14,9 @@ namespace MyFirstASP_Application
             builder.Services.AddDbContext<ExpensesDbContext>(options => 
                 options.UseInMemoryDatabase("ExpensesDb")
             );
+            builder.Services.AddDbContext<ResponsibilitiesDbContext>(options =>
+                options.UseInMemoryDatabase("ResponsibilitiesDb")
+);
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

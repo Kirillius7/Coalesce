@@ -25,84 +25,38 @@
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditExpense">Create new</a>
     <hr />
-    <h3>Total expenses $@ViewBag.expenses</h3>
+    <h3>Total expenses: $@ViewBag.expenses</h3>
     <br />
     <br1/>
-@*     <table class = "table">
-        <thead> 
-            <tr>
-                <th>
-                    id
-                </th>
-                <th>
-                    Value
-                </th>
-                <th>
-                    Description
-                </th>                
-                <th>
-                    Time
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach(var expense in Model)
-                {
-                    <tr>
-                        <td>
-                            @expense.id
-                        </td>
-                        <td>
-                            @expense.Value
-                        </td>
-                        <td>
-                            @expense.Description
-                        </td>
-                        <td>
-                            @expense.Date.Month/@expense.Date.Day/@expense.Date.Year 
-                        </td>
-                        <td>
-                            <a asp-action="CreateEditExpense" asp-route-id = "@expense.id">Edit</a>
-                            <a asp-action="DeleteExpense" asp-route-id = "@expense.id">Delete</a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table> *@
 
     @foreach (var grp in group)
     {
        <h3>@monthNames[grp.Key.Month] @grp.Key.Year -> expenses: $@grp.Sum(x => x.Value)</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>Value</th>
-                        <th>Description</th>
-                        <th>Time</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                @foreach (var expense in grp)
-                {
-                            <tr>
-                                <td>@expense.id</td>
-                                <td>@expense.Value</td>
-                                <td>@expense.Description</td>
-                                <td>@expense.Date.ToString("dd/MM/yyyy")</td>
-                                <td>
-                                    <a asp-action="CreateEditExpense" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
-                                    <a asp-action="DeleteExpense" class="btn btn-outline-danger" asp-route-id="@expense.id">Delete</a>
-                                </td>
-                            </tr>
+       <table class="table">
+           <thead>
+               <tr>
+                   <th>id</th>
+                   <th>Value</th>
+                   <th>Description</th>
+                   <th>Time</th>
+                   <th>Actions</th>
+               </tr>
+           </thead>
+           <tbody>
+               @foreach (var expense in grp)
+               {
+                   <tr>
+                       <td>@expense.id</td>
+                       <td>@expense.Value</td>
+                       <td>@expense.Description</td>
+                       <td>@expense.Date.ToString("dd/MM/yyyy")</td>
+                       <td>
+                           <a asp-action="CreateEditExpense" class="btn btn-outline-success" asp-route-id="@expense.id">Edit</a>
+                           <a asp-action="DeleteExpense" class="btn btn-outline-danger" asp-route-id="@expense.id">Delete</a>
+                       </td>
+                  </tr>
                 }
-                </tbody>
-            </table>
+           </tbody>
+        </table>
     }
 </div>

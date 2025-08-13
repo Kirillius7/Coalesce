@@ -51,85 +51,82 @@ footer {
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                @* <a class="btn btn-outline-primary btn-lg" asp-area="" asp-controller="Home" asp-action="Index">Coalesce</a> *@
-                @* <div class="p-2 bg-warning text-dark fw-bold">Акція</div> *@
                 <img src = "/images/photo2.jpg" height = "50px" width = "150px">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
                      <!-- Центроване меню -->
-            <ul class="navbar-nav position-absolute start-50 translate-middle-x d-flex flex-row gap-3">
-                <li class="nav-item">
-                    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Expenses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Privacy">List to do</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Dates</a>
-                </li>
+                     <ul class="navbar-nav position-absolute start-50 translate-middle-x d-flex flex-row gap-3">
+                         <li class="nav-item">
+                             <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Expenses">Expenses</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Responsibilities">List to do</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Dates</a>
+                         </li>
 
                 <!-- Додаткові кнопки -->
-            </ul>
-                </div>
+                    </ul>
+               </div>
             </div>
         </nav>
+
     </header>
     <div class="container main-content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-@*     <footer class="border-top footer text-muted">
+    
+    <footer class="bg-dark text-light py-4">
         <div class="container">
-            &copy; 2025 - MyFirstASP_Application - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+
+                <!-- 1 стовпець -->
+                <div class="col-md-6">
+                    <h5>About project</h5>
+                    <p>
+                        This project is dedicated to make people's lives much easier and become a source 
+                        of tracking information in a convenient way. Whether it's your mom birthday, your task to accomplish
+                        or a bill you spent your money on - our team has been inspired to help you keep everything always recorded accordingly
+                    </p>
+                </div>
+
+                   <!-- 2 стовпець -->
+                <div class="col-md-2 offset-md-1">
+                    <h5>References</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light">Main page</a></li>
+                        <li><a href="#" class="text-light">About us</a></li>
+                        <li><a href="#" class="text-light">Contacts</a></li>
+                        <li><a href="#" class="text-light">FAQ</a></li>
+                    </ul>
+                </div>
+
+                   <!-- 3 стовпець -->
+                <div class="col-md-3">
+                    <h5>Subscribe to our news</h5>
+                    <form>
+                        <div class="mb-2">
+                            <input type="email" class="form-control" placeholder="Введіть email">
+                        </div>
+                        <button class="btn btn-primary w-100" type="button">Підписатися</button>
+                    </form>
+                </div>
+            </div>
+
+            <hr class="bg-light">
+            <div class="text-center small">
+              © 2025 Coalesce Inc. All rights reserved. Ukraine, Kyiv.
+            </div>
         </div>
-    </footer> *@
-        <footer class="bg-dark text-light py-4">
-  <div class="container">
-    <div class="row">
-      <!-- 1 стовпець -->
-      <div class="col-md-6">
-        <h5>About project</h5>
-        <p>
-            This project is dedicated to make people's lives much easier and become a source 
-            of tracking information in a convenient way. Whether it's your mom birthday, your task to accomplish
-            or a bill you spent your money on - our team has been inspired to help you keep everything always recorded accordingly
-        </p>
-      </div>
+    </footer>
 
-      <!-- 2 стовпець -->
-      <div class="col-md-2 offset-md-1">
-        <h5>References</h5>
-        <ul class="list-unstyled">
-          <li><a href="#" class="text-light">Main page</a></li>
-          <li><a href="#" class="text-light">About us</a></li>
-          <li><a href="#" class="text-light">Contacts</a></li>
-          <li><a href="#" class="text-light">FAQ</a></li>
-        </ul>
-      </div>
-
-      <!-- 3 стовпець -->
-      <div class="col-md-3">
-        <h5>Subscribe to our news</h5>
-        <form>
-          <div class="mb-2">
-            <input type="email" class="form-control" placeholder="Введіть email">
-          </div>
-          <button class="btn btn-primary w-100" type="button">Підписатися</button>
-        </form>
-      </div>
-    </div>
-
-    <hr class="bg-light">
-    <div class="text-center small">
-      © 2025 Coalesce Inc. All rights reserved. Ukraine, Kyiv.
-    </div>
-  </div>
-</footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

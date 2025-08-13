@@ -10,6 +10,7 @@
 <div class="d-flex justify-content-center">
     <form asp-action="CreateEditExpenseForm" style="max-width: 600px; width: 100%;"> 
         <input hidden class = "form-control" type = "number" placeholder = "0" asp-for="id" />
+
         <label class = "mt-4">Value $</label>
         <input class = "form-control" type = "number" placeholder = "0" asp-for="Value" step = "0.01" />
 
@@ -18,13 +19,12 @@
     
         <label class = "mt-4">Date</label>
         <input type="date" asp-for="Date" class="form-control" />
+
         <a class="btn btn-primary mt-4" asp-controller="Home" asp-action="Expenses">Back</a>
 
         <div class="text-center mt-4">
             <button class="btn btn-success" type="submit">Ok</button>
             <button class="btn btn-danger" type="reset">Clear</button>
         </div>
-        @* <button class = "btn btn-primary mt-4" type = "submit">Ok</button> *@
-
     </form>
 </div>
