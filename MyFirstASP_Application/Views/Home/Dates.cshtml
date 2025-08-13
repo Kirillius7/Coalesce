@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Dates";
+}
+@model List<Date>
+
+@{
+    var group = Model.OrderBy(
+                m => m.dt)
+                .GroupBy(
+                    x => new { x.dt.Year, x.dt.Month }
+                ).ToList();
+
+    var monthNames = new Dictionary<int, string> {
+            { 1, "January" }, { 2, "February" }, { 3, "March" },
+            { 4, "April" }, { 5, "May" }, { 6, "June" },
+            { 7, "July" }, { 8, "August" }, { 9, "September" },
+            { 10, "October" }, { 11, "November" }, { 12, "December" }
+        };
+
+
+}
+<div class="text-center">
+    <h1 class="display-4">Dates</h1>
+    <br />
+    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
+    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditDate">Create new</a>
+    <hr />
+    @* <h3>Total expenses: $@ViewBag.expenses</h3> *@
+    <br />
+    <br1/>
+
+    @foreach (var grp in group)
+    {
+           <h3>@monthNames[grp.Key.Month]</h3>
+           <table class="table">
+               <thead>
+                   <tr>
+                       <th>id</th>
+                       <th>Name</th>
+                       <th>Type</th>
+                       <th>Time</th>
+                       <th>Actions</th>
+                   </tr>
+               </thead>
+               <tbody>
+                @foreach (var date in grp)
+                {
+                           <tr>
+                               <td>@date.id</td>
+                               <td>@date.name</td>
+                               <td>@date.type</td>
+                               <td>@date.dt.ToString("dd/MM/yyyy")</td>
+                               <td>
+                                   <a asp-action="CreateEditDate" class="btn btn-outline-success" asp-route-id="@date.id">Edit</a>
+                                   <a asp-action="DeleteDate" class="btn btn-outline-danger" asp-route-id="@date.id">Delete</a>
+                               </td>
+                          </tr>
+                }
+               </tbody>
+            </table>
+    }
+</div>

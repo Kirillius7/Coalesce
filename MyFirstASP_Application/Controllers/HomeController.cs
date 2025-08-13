@@ -12,12 +12,15 @@ namespace MyFirstASP_Application.Controllers
 
         private readonly ResponsibilitiesDbContext _rspcontext;
 
+        private readonly DatesDbContext _datescontext;
 
-        public HomeController(ILogger<HomeController> logger, ExpensesDbContext context, ResponsibilitiesDbContext rspcontext) 
+        public HomeController(ILogger<HomeController> logger, ExpensesDbContext context, 
+            ResponsibilitiesDbContext rspcontext, DatesDbContext datescontext) 
         {
             _logger = logger;
             _context = context;
             _rspcontext = rspcontext;
+            _datescontext = datescontext;
         }
         [HttpGet]
         public IActionResult Test(int firstNumber, int secondNumber)
@@ -145,6 +148,45 @@ namespace MyFirstASP_Application.Controllers
             _rspcontext.responsibilities.RemoveRange(resps);
             _rspcontext.SaveChanges();
             return RedirectToAction("Responsibilities");
+        }
+
+        public IActionResult Dates()
+        {
+            var allDates = _datescontext.dates.ToList();
+
+            var totalDates = _datescontext.dates.Count();
+            ViewBag.dates = totalDates;
+            return View(allDates);
+        }
+        public IActionResult CreateEditDate(int? id)
+        {
+            if (id is not null)
+            {
+                var date = _datescontext.dates.SingleOrDefault(x => x.id == id);
+                return View();
+            }
+
+            return View();
+        }
+        public IActionResult DeleteDate(int? id)
+        {
+            var date = _datescontext.dates.SingleOrDefault(x => x.id == id);
+            _datescontext.dates.Remove(date);
+            _datescontext.SaveChanges();
+            return RedirectToAction("Dates");
+        }
+        public IActionResult CreateEditDateForm(Date model)
+        {
+            if (model.id == 0)
+            {
+                _datescontext.dates.Add(model);
+            }
+            else
+            {
+                _datescontext.dates.Update(model);
+            }
+            _datescontext.SaveChanges();
+            return RedirectToAction("Dates");
         }
     }
 }
