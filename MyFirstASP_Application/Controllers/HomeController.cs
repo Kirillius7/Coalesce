@@ -8,66 +8,14 @@ namespace MyFirstASP_Application.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly ExpensesDbContext _context;
-
-        private readonly ResponsibilitiesDbContext _rspcontext;
-
-        private readonly DatesDbContext _datescontext;
-
-        public HomeController(ILogger<HomeController> logger, ExpensesDbContext context, 
-            ResponsibilitiesDbContext rspcontext, DatesDbContext datescontext) 
+        public HomeController(ILogger<HomeController> logger) 
         {
             _logger = logger;
-            _context = context;
-            _rspcontext = rspcontext;
-            _datescontext = datescontext;
         }
-        [HttpGet]
-        public IActionResult Test(int firstNumber, int secondNumber)
-        {
-            return View(firstNumber + secondNumber);
-        }
+
         public IActionResult Index()
         {
             return View();
-        }
-        public IActionResult Expenses()
-        {
-            var allExpenses = _context.expenses.ToList();
-
-            var totalExpenses = _context.expenses.Sum(x => x.Value);
-            ViewBag.expenses = totalExpenses;
-            return View(allExpenses);
-        }
-        public IActionResult CreateEditExpense(int? id)
-        {
-            if(id is not null)
-            {
-                var expense = _context.expenses.SingleOrDefault(x => x.id == id);
-                return View();
-            }
-
-            return View();
-        }
-        public IActionResult DeleteExpense(int? id)
-        {
-            var expense = _context.expenses.SingleOrDefault(x => x.id == id);
-            _context.expenses.Remove(expense);
-            _context.SaveChanges();
-            return RedirectToAction("Expenses");
-        }
-        public IActionResult CreateEditExpenseForm(Expense model)
-        {
-            if (model.id == 0)
-            {
-                _context.expenses.Add(model);
-            }
-            else
-            {
-                _context.expenses.Update(model);
-            }
-            _context.SaveChanges();
-            return RedirectToAction("Expenses");
         }
         public IActionResult Privacy()
         {
@@ -78,115 +26,6 @@ namespace MyFirstASP_Application.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        public IActionResult PeopleFill()
-        {
-            return View();
-        }
-
-        public IActionResult PeopleForm(Person pn)
-        {
-            if (ModelState.IsValid)
-            {
-                return RedirectToAction("Index");
-            }
-            return View();
-        }
-
-        public IActionResult Responsibilities()
-        {
-            var respons = _rspcontext.responsibilities.ToList();
-            var totalResponsibilities = _rspcontext.responsibilities.Count();
-            ViewBag.responsibilities = totalResponsibilities;
-            return View(respons);
-        }
-        public IActionResult MonthResponsibilities(int day, int month)
-        {
-            var dayRespons = _rspcontext.responsibilities.Where(x => x.date.Day == day && x.date.Month == month).ToList();
-            var unfinished = _rspcontext.responsibilities
-                .Where(x => x.accoplishment == false && x.date.Day == day && x.date.Month == month).Count();
-            ViewBag.tasksMonth = unfinished;
-            return View(dayRespons);
-        }
-
-        public IActionResult CreateEditResponsibilityForm(Responsibility model)
-        {
-            if (model.id == 0)
-            {
-                _rspcontext.responsibilities.Add(model);
-            }
-            else
-            {
-                _rspcontext.responsibilities.Update(model);
-            }
-            _rspcontext.SaveChanges();
-            return RedirectToAction("Responsibilities");
-        }
-        public IActionResult DeleteResponsibility(int id, int day, int month)
-        {
-            var responsibility = _rspcontext.responsibilities.SingleOrDefault(x => x.id == id);
-            _rspcontext.responsibilities.Remove(responsibility);
-            _rspcontext.SaveChanges();
-            return RedirectToAction("MonthResponsibilities", new { day, month});
-        }
-
-        public IActionResult CreateEditResponsibility(int? id)
-        {
-            if (id is not null)
-            {
-                var responsibility = _rspcontext.responsibilities.SingleOrDefault(x => x.id == id);
-                return View();
-            }
-
-            return View();
-        }
-
-        public IActionResult DeleteDayResponsibilities(int? day, int? month)
-        {
-            var resps = _rspcontext.responsibilities.Where(x => x.date.Day == day && x.date.Month == month).ToList();
-            _rspcontext.responsibilities.RemoveRange(resps);
-            _rspcontext.SaveChanges();
-            return RedirectToAction("Responsibilities");
-        }
-
-        public IActionResult Dates()
-        {
-            var allDates = _datescontext.dates.ToList();
-
-            var totalDates = _datescontext.dates.Count();
-            ViewBag.dates = totalDates;
-            return View(allDates);
-        }
-        public IActionResult CreateEditDate(int? id)
-        {
-            if (id is not null)
-            {
-                var date = _datescontext.dates.SingleOrDefault(x => x.id == id);
-                return View();
-            }
-
-            return View();
-        }
-        public IActionResult DeleteDate(int? id)
-        {
-            var date = _datescontext.dates.SingleOrDefault(x => x.id == id);
-            _datescontext.dates.Remove(date);
-            _datescontext.SaveChanges();
-            return RedirectToAction("Dates");
-        }
-        public IActionResult CreateEditDateForm(Date model)
-        {
-            if (model.id == 0)
-            {
-                _datescontext.dates.Add(model);
-            }
-            else
-            {
-                _datescontext.dates.Update(model);
-            }
-            _datescontext.SaveChanges();
-            return RedirectToAction("Dates");
         }
     }
 }

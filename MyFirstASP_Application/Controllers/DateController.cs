@@ -28,6 +28,7 @@ namespace MyFirstASP_Application.Controllers
         public IActionResult Dates()
         {
             var data = _dateService.GetAllDates();
+            ViewBag.dates = _dateService.GetTotalDates();
             return View(data);
         }
         public IActionResult CreateEditDateForm(Date model)

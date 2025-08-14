@@ -6,7 +6,6 @@ namespace MyFirstASP_Application.Services.DateService
     public class DateSrvc : IDateService
     {
         private readonly DatesDbContext _context;
-
         public DateSrvc(DatesDbContext context)
         {
             _context = context;
@@ -22,15 +21,10 @@ namespace MyFirstASP_Application.Services.DateService
             return _context.dates.Count();
         }
 
-        public Date GetDateById(int id)
-        {
-            return _context.dates.SingleOrDefault(x => x.id == id);
-        }
-
-        public void DeleteDate(int id)
+        public void DeleteDate(int? id)
         {
             var date = _context.dates.SingleOrDefault(x => x.id == id);
-            if (date != null)
+            if (date is not null)
             {
                 _context.dates.Remove(date);
                 _context.SaveChanges();
@@ -55,5 +49,6 @@ namespace MyFirstASP_Application.Services.DateService
             }
             _context.SaveChanges();
         }
+
     }
 }

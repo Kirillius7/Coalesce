@@ -6,13 +6,13 @@ namespace MyFirstASP_Application.Models
     {
         public int id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         public string? name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Type is required")]
         public string? type { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date is required")]
         public DateTime dt { get; set; }
     }
 }

@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using MyFirstASP_Application.Models;
 using MyFirstASP_Application.Services.DateService;
 using MyFirstASP_Application.Services.ExpenseService;
+using MyFirstASP_Application.Services.ResponsibilityService;
 
 namespace MyFirstASP_Application
 {
@@ -24,6 +25,8 @@ namespace MyFirstASP_Application
             );
             builder.Services.AddScoped<IDateService, DateSrvc>();
             builder.Services.AddScoped<IExpenseService, ExpenseSrvc>();
+            builder.Services.AddScoped<IResponsibilityService, ResponsibilitySrvc>();
+
 
             var app = builder.Build();
 

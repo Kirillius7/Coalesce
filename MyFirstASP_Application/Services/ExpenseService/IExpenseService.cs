@@ -11,5 +11,7 @@ namespace MyFirstASP_Application.Services.ExpenseService
         void DeleteExpense(int? id);
 
         void CreateEditExpenseForm(Expense expense);
+
+        double TotalExpenses();
     }
 }

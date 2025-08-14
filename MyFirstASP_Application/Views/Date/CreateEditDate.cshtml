@@ -3,6 +3,7 @@
 }
 
 @model MyFirstASP_Application.Models.Date
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div class="text-center">
     <h1 class="display-4">Create or edit a date</h1>
@@ -13,12 +14,18 @@
 
         <label class = "mt-4">Name</label>
         <input class = "form-control" type = "name" placeholder = "Add a name" asp-for="name" />
+        <span asp-validation-for="name" class="text-danger"></span>
+        <br />
 
         <label class = "mt-4">Type</label>
         <input class = "form-control" type = "text" placeholder = "Add a type" asp-for="type"/>
+        <span asp-validation-for="type" class="text-danger"></span>
+        <br />
 
         <label class = "mt-4">Date</label>
         <input type="date" asp-for="dt" class="form-control" />
+        <span asp-validation-for="dt" class="text-danger"></span>
+        <br />
 
         <a class="btn btn-primary mt-4" asp-controller="Date" asp-action="Dates">Back</a>
 
@@ -27,4 +34,8 @@
             <button class="btn btn-danger" type="reset">Clear</button>
         </div>
     </form>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 </div>

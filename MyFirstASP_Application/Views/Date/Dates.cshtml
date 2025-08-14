@@ -22,18 +22,16 @@
 <div class="text-center">
     <h1 class="display-4">Dates</h1>
     <br />
-@*     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
-    <a class="btn my-gradient-btn" asp-controller="Home" asp-action="CreateEditDate">Create new</a> *@
     <a class="btn my-gradient-btn" asp-controller="Home" asp-action="Index">Back</a>
     <a class="btn my-gradient-btn" asp-controller="Date" asp-action="CreateEditDate">Create new</a>
     <hr />
-    @* <h3>Total expenses: $@ViewBag.expenses</h3> *@
+    <h3>Number of dates: @ViewBag.dates</h3>
     <br />
     <br1/>
 
     @foreach (var grp in group)
     {
-           <h3>@monthNames[grp.Key.Month]</h3>
+           <h3>@monthNames[grp.Key.Month] @grp.Key.Year</h3>
            <table class="table">
                <thead>
                    <tr>

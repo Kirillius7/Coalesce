@@ -6,13 +6,12 @@ namespace MyFirstASP_Application.Models
     {
         public int id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Task is required")]
         public string? task { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Date is required")]
         public DateTime date { get; set; }
 
-        [Required]
         public bool accoplishment { get; set; }
     }
 }

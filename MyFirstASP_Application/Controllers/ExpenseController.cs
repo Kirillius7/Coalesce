@@ -7,26 +7,22 @@ namespace MyFirstASP_Application.Controllers
 {
     public class ExpenseController : Controller
     {
-        private readonly IExpenseService _context;
-        public ExpenseController(IExpenseService context)
+        private readonly IExpenseService _expenseService;
+        public ExpenseController(IExpenseService expenseService)
         {
-            _context = context;
+            _expenseService = expenseService;
         }
         public IActionResult Expenses()
         {
-            //var allExpenses = _context.expenses.ToList();
-
-            //var totalExpenses = _context.expenses.Sum(x => x.Value);
-            //ViewBag.expenses = totalExpenses;
-            var allExpenses = _context.Expenses();
+            var allExpenses = _expenseService.Expenses();
+            ViewBag.expenses = _expenseService.TotalExpenses();
             return View(allExpenses);
         }
         public IActionResult CreateEditExpense(int? id)
         {
             if (id is not null)
             {
-                //var expense = _context.expenses.SingleOrDefault(x => x.id == id);
-                _context.CreateEditExpense(id);
+                _expenseService.CreateEditExpense(id);
                 return View();
             }
 
@@ -34,24 +30,12 @@ namespace MyFirstASP_Application.Controllers
         }
         public IActionResult DeleteExpense(int? id)
         {
-            //var expense = _context.expenses.SingleOrDefault(x => x.id == id);
-            //_context.expenses.Remove(expense);
-            //_context.SaveChanges();
-            _context.DeleteExpense(id);
+            _expenseService.DeleteExpense(id);
             return RedirectToAction("Expenses");
         }
         public IActionResult CreateEditExpenseForm(Expense model)
         {
-            //if (model.id == 0)
-            //{
-            //    _context.expenses.Add(model);
-            //}
-            //else
-            //{
-            //    _context.expenses.Update(model);
-            //}
-            //_context.SaveChanges();
-            _context.CreateEditExpenseForm(model);
+            _expenseService.CreateEditExpenseForm(model);
             return RedirectToAction("Expenses");
         }
     }

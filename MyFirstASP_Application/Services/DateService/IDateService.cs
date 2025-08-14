@@ -7,8 +7,7 @@ namespace MyFirstASP_Application.Services.DateService
     {
         IEnumerable<Date> GetAllDates();
         int GetTotalDates();
-        Date GetDateById(int id);
-        void DeleteDate(int id);
+        void DeleteDate(int? id);
         void CreateEditDate(int? id);
         public void CreateEditDateForm(Date model);
     }
