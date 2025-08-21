@@ -1,7 +1,7 @@
 # Coalesce
 
 <img height="949" alt="Screenshot 1" width="800" src="https://github.com/user-attachments/assets/76edd6aa-83a9-4c79-a9f7-686037005e65" />
-<img height="949" alt="Screenshot 1" width="800" src="https://github.com/user-attachments/assets/2d38cb87-b12a-44b4-903a-6acecc93a826" />
+<img height="949" alt="Screenshot 2" width="800" src="https://github.com/user-attachments/assets/2d38cb87-b12a-44b4-903a-6acecc93a826" />
 
 # About the project
 This ASP.NET MVC application combines daily productivity tools with robust data management capabilities. It allows users to plan their schedule, track expenses, and record important events, keeping everything organized from morning tasks to evening plans. Built with modern architectural principles, it includes a well-structured layered design, dependency injection, data validation, and centralized error handling. The app also supports full CRUD functionality for managing records, ensuring that users can easily create, view, update, and delete their data while maintaining reliability and scalability.
