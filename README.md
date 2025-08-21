@@ -27,7 +27,7 @@ This project showcases the ability to build a professional, maintainable, and sc
 
 # Getting Started:
 ## Installation:
-- git clone https://github.com/Kirillius7/WebApiApp
+- git clone https://github.com/Kirillius7/Coalesce
 - cd project
 - dotnet restore
 - dotnet build
