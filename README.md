@@ -19,7 +19,7 @@ This ASP.NET MVC application combines daily productivity tools with robust data 
 - **Model Binding & Validation**: Automatic mapping of HTTP requests to action parameters with validation checks.
 - **ViewData, and ViewBag**: State management mechanisms to pass data between controllers and views.
 
-# Technologies:
+# Technologies
 ASP.NET MVC, C#, Entity Framework, Razor Views, LINQ, Data Annotations, Bootstrap / CSS, Dependency Injection, Routing
 
 # Purpose:
@@ -36,6 +36,6 @@ This project showcases the ability to build a professional, maintainable, and sc
 - https://localhost:7038/Expense/CreateEditExpense - запит для створення нового або зміни наявного запису про витрати у базі даних 
 - https://localhost:7038/Date/Dates - запит на виведення всіх наявних дат із бази даних
  
-# Contacts:
+# Contacts
 https://www.linkedin.com/in/kyrylo-popov-ab160536a/
 
